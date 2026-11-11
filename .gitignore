@@ -1,0 +1,8 @@
+# Local preview settings for Claude Code
+.claude/
+
+# npm download cache (only used for the Vercel CLI)
+.npm-cache/
+
+# Original full-size photo; the site uses banner.webp
+oshish.webp
