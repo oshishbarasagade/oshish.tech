@@ -456,7 +456,23 @@
   .chip i img { display: block; width: 100%; height: 100%; }
   img.proj-icon { object-fit: cover; }
   .now.shipped { background: rgba(52, 199, 89, .14); color: var(--green-text); }
-  .cta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 22px; font-size: 15px; }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 22px; font-size: 15px; }
+  .coffee-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: #ffdd00;
+    color: #111;
+    font-weight: 600;
+    box-shadow: 0 6px 22px rgba(255, 221, 0, .22);
+    transition: transform .45s var(--spring), box-shadow .3s;
+  }
+  .coffee-btn:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 10px 28px rgba(255, 221, 0, .35); }
+  .coffee-btn span { font-size: 16px; }
+  .coffee-btn:hover span { animation: steam .6s ease-in-out; }
+  @keyframes steam { 50% { transform: translateY(-2px) rotate(-8deg); } }
 
   /* ---------- Projects ---------- */
   .view-toggle {
@@ -968,6 +984,7 @@
       <a class="chip" href="#project/quiplos"><i><img src="quiplos.png" alt="" width="18" height="18"></i>Quiplos</a>, a Chrome extension that writes replies on X and LinkedIn in your own voice, and I keep making it better. I also made
       <a class="chip" href="#project/sling-smash-tycoon"><i><img src="work/sling-icon.webp" alt="" width="18" height="18"></i>Sling &amp; Smash Tycoon</a>, a physics slingshot game you can play in the browser.</p>
     <div class="cta">
+      <a class="coffee-btn" href="https://buymeacoffee.com/oshish" target="_blank" rel="noopener"><span aria-hidden="true">☕</span>Buy me a coffee</a>
       <a class="muted-link" href="https://www.instagram.com/oshish.ai/" target="_blank" rel="noopener">DM on Instagram<svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
       <a class="muted-link" href="mailto:hello@oshish.tech">Email me</a>
     </div>
@@ -1779,7 +1796,7 @@ var SOCIALS = [
   { name: 'Peerlist',        icon: 'peerlist',     color: '00AA45', url: 'https://peerlist.io/oshishbarsagade' },
   { name: 'Reddit',          icon: 'reddit',       color: 'FF4500', url: 'https://www.reddit.com/user/b-oshish/' },
   { name: 'Bluesky',         icon: 'bluesky',      color: '1185FE', url: '' },
-  { name: 'Buy Me a Coffee', icon: 'buymeacoffee', color: 'FFDD00', url: '' }
+  { name: 'Buy Me a Coffee', icon: 'buymeacoffee', color: 'FFDD00', url: 'https://buymeacoffee.com/oshish' }
 ];
 (function () {
   /* LinkedIn isn't in the icon set, so its logo is drawn here. */
