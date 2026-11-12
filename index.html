@@ -835,48 +835,6 @@
     .contact h2 { font-size: 28px; }
   }
 
-  /* ---------- Road to Germany ---------- */
-  .flag { display: flex; flex-direction: column; width: 22px; height: 15px; border-radius: 3px; overflow: hidden; }
-  .flag i { flex: 1; }
-  .flag i:nth-child(1) { background: #1a1a1a; }
-  .flag i:nth-child(2) { background: #dd0000; }
-  .flag i:nth-child(3) { background: #ffce00; }
-  .journey-intro { margin-top: 18px; font-size: 16.5px; line-height: 1.7; }
-  .journey { list-style: none; margin-top: 24px; padding: 0 0 0 26px; position: relative; }
-  .journey::before {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 6px;
-    bottom: 6px;
-    width: 2px;
-    background: linear-gradient(to bottom, #1a1a1a 0 33%, #dd0000 33% 66%, #ffce00 66%);
-    border-radius: 2px;
-    opacity: .7;
-  }
-  .journey li { position: relative; padding-bottom: 22px; }
-  .journey li::before {
-    content: "";
-    position: absolute;
-    left: -26px;
-    top: 5px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--line-3);
-  }
-  .journey li.done::before { border-color: var(--accent); background: var(--accent); }
-  .journey li.now::before { border-color: var(--accent); }
-  .journey .when { display: flex; gap: 8px; align-items: center; font-size: 13px; }
-  .journey .state { padding: 0 7px; border-radius: 6px; background: var(--tint); color: var(--strong); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-  .journey li.done .state { background: rgba(52, 199, 89, .14); color: var(--green-text); }
-  .journey b { display: block; margin-top: 2px; font-size: 16px; }
-  .journey p { margin-top: 2px; font-size: 15px; }
-  .journey-posts { padding: 14px 16px; border: 1px dashed var(--line-2); border-radius: 14px; font-size: 14px; }
-  .journey-posts a { color: var(--strong); font-weight: 600; }
-  .journey-posts a:hover { color: var(--accent); }
-
   /* ---------- Share buttons ---------- */
   .share { flex-wrap: wrap; }
   .share-links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -1102,16 +1060,6 @@
           <button class="linkish" id="gh-play" type="button">Play a round</button>
         </span>
       </div>
-    </div>
-
-    <div class="section" id="germany">
-      <div class="sec-head">
-        <h2><span>06</span>Road to Germany</h2>
-        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
-      </div>
-      <p class="journey-intro r">My plan: Germany by 2028. I'm keeping an honest log here of what I learn and prepare along the way, starting with the language.</p>
-      <ol class="journey" data-journey></ol>
-      <div class="journey-posts r" data-journey-posts></div>
     </div>
   </section>
 
@@ -1602,14 +1550,6 @@ There's a free plan with 10 generations and no card needed. Pro is $9 a month an
   }
 ];
 
-/* Road to Germany 2028. Add a step whenever something happens.
-   state: 'done', 'now' or 'next'. Posts with series: 'Germany 2028' are listed under the timeline. */
-var JOURNEY = [
-  { when: 'Nov 2026', state: 'done', title: 'Started this log', text: 'Put the plan in writing and on this site.' },
-  { when: 'Next', state: 'next', title: 'Learning German', text: 'How I am learning, and what is working, will go here.' },
-  { when: '2028', state: 'next', title: 'Germany', text: 'The goal.' }
-];
-
 /* ====================================================================== */
 
 var ICONS = {}; // small icons for projects without an image (add your own)
@@ -1706,24 +1646,6 @@ document.querySelectorAll('[data-posts]').forEach(function (box) {
     '</' + tag + '>';
   }).join('');
 });
-
-/* Road to Germany: timeline and the post series. */
-(function () {
-  var list = document.querySelector('[data-journey]');
-  var STATE = { done: 'Done', now: 'Now', next: 'Next up' };
-  list.innerHTML = JOURNEY.map(function (j) {
-    return '<li class="r ' + esc(j.state) + '">' +
-      '<span class="when">' + esc(j.when) + '<span class="state">' + (STATE[j.state] || '') + '</span></span>' +
-      '<b>' + esc(j.title) + '</b>' + (j.text ? '<p>' + esc(j.text) + '</p>' : '') +
-    '</li>';
-  }).join('');
-  var series = POSTS.filter(function (p) { return p.series === 'Germany 2028'; });
-  document.querySelector('[data-journey-posts]').innerHTML = series.length
-    ? 'Posts in this series: ' + series.map(function (p) {
-        return '<a href="' + (p.body ? '#post/' + esc(p.slug) : esc(p.url)) + '">' + esc(p.title) + '</a>';
-      }).join(' · ')
-    : '✍️ A post series about this journey starts soon. Learning German comes first.';
-})();
 
 /* Fill the project detail page. Returns false if there's no such project page. */
 function accentText(s) { return esc(s).replace(/\*(.+?)\*/g, '<em>$1</em>'); }
