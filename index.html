@@ -734,6 +734,9 @@
   .legend i:first-of-type { margin-left: 4px; }
   .legend i:last-of-type { margin-right: 4px; }
   .gh-hint { font-size: 13px; }
+  .gh-live { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-size: 12px; white-space: nowrap; }
+  .gh-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #34c759; animation: livePulse 2s ease-in-out infinite; }
+  @keyframes livePulse { 50% { opacity: .35; } }
   .gh-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; margin-top: 14px; font-size: 14px; }
   .gh-actions { display: flex; gap: 18px; }
   .linkish { padding: 0; border: 0; background: none; color: var(--text); font: inherit; cursor: pointer; transition: color .2s; }
@@ -2168,7 +2171,11 @@ var sfx = (function () {
     secret = false;
     speed = 115;
     setStatus();
-    setTimeout(function () { statusText = ''; setStatus(); reset(); }, 2600);
+    setTimeout(function () {
+      statusText = '';
+      if (pendingRedraw) { pendingRedraw = false; lastWidth = 0; relayout(); } else reset();
+      setStatus();
+    }, 2600);
   }
 
   function rr(c, r, color) {
@@ -2217,7 +2224,15 @@ var sfx = (function () {
     if (mode === 'play') { statusEl.textContent = (secret ? '🌈 Secret level · ' : '') + 'Score ' + score + ' · arrow keys, WASD, or swipe'; return; }
     if (!days) { statusEl.textContent = 'Couldn’t load contributions right now.'; return; }
     var n = total >= 1000 ? (total / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(total);
-    statusEl.innerHTML = '<b>' + n + '</b> contribution' + (total === 1 ? '' : 's') + ' in the past year';
+    statusEl.innerHTML = '<b>' + n + '</b> contribution' + (total === 1 ? '' : 's') + ' in the past year' +
+      (updatedAt ? ' <span class="gh-live">Live · updated ' + ago(updatedAt) + '</span>' : '');
+  }
+  function ago(t) {
+    var s = Math.round((Date.now() - t) / 1000);
+    if (s < 60) return 'just now';
+    var m = Math.round(s / 60);
+    if (m < 60) return m + ' min ago';
+    return Math.round(m / 60) + ' h ago';
   }
 
   function visible() { return canvas.offsetParent !== null && !document.hidden; }
@@ -2298,16 +2313,44 @@ var sfx = (function () {
   addEventListener('resize', relayout);
   addEventListener('tabshown', function (e) { if (e.detail === 'github' || e.detail === 'home') relayout(); });
 
-  fetch('https://github-contributions-api.jogruber.de/v4/' + USER + '?y=last')
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (data) {
-      days = data.contributions || [];
-      total = (data.total && data.total.lastYear) || 0;
-    })
-    .catch(function () { days = null; })
-    .then(function () { setStatus(); lastWidth = 0; relayout(); });
+  /* Live data: load on start, then check again every 5 minutes while the
+     page is open, and straight away when the visitor comes back to the tab. */
+  var REFRESH = 5 * 60 * 1000;
+  var updatedAt = 0, loading = false, pendingRedraw = false;
+  function load(isRefresh) {
+    if (loading) return;
+    loading = true;
+    fetch('https://github-contributions-api.jogruber.de/v4/' + USER + '?y=last&_=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (data) {
+        var nextDays = data.contributions || [];
+        var nextTotal = (data.total && data.total.lastYear) || 0;
+        var changed = !days || JSON.stringify(nextDays) !== JSON.stringify(days);
+        if (isRefresh && nextTotal > total) {
+          var gain = nextTotal - total;
+          toast('+' + gain + ' new contribution' + (gain === 1 ? '' : 's') + ' on GitHub 🎉');
+        }
+        days = nextDays;
+        total = nextTotal;
+        updatedAt = Date.now();
+        if (changed) {
+          /* Don't wipe the board mid-game; redraw once the round ends. */
+          if (mode === 'play') pendingRedraw = true;
+          else { lastWidth = 0; relayout(); }
+        }
+      })
+      .catch(function () { if (!days) days = null; })
+      .then(function () { loading = false; setStatus(); });
+  }
+  load(false);
   setStatus();
   relayout();
+  setInterval(function () { if (!document.hidden) load(true); }, REFRESH);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden && Date.now() - updatedAt > 60 * 1000) load(true);
+  });
+  /* Keep "updated 3 min ago" accurate. */
+  setInterval(function () { if (mode !== 'play' && !statusText) setStatus(); }, 30 * 1000);
 })();
 </script>
 </body>
