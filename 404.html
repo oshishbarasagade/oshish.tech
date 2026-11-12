@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Oshish</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ff6a13'/%3E%3C/svg%3E">
+<script>
+  /* Same theme as the main site: saved choice first, then the system setting. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --outer: #000000;
+    --line: #222222;
+    --text: #a3a3a3;
+    --strong: #f5f5f5;
+    --accent: #ff6a13;
+    --ink: #ededed;
+    --tint-soft: rgba(255, 255, 255, .04);
+    --spring: cubic-bezier(.34, 1.5, .64, 1);
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f2ea;
+    --outer: #ebe3d6;
+    --line: #e6ddd0;
+    --text: #6b6257;
+    --strong: #1d1813;
+    --accent: #e2580b;
+    --ink: #26201a;
+    --tint-soft: rgba(0, 0, 0, .03);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+    background: var(--outer);
+    color: var(--text);
+    font: 16px/1.6 "Instrument Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    width: 100%;
+    max-width: 560px;
+    padding: 40px 28px 44px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--bg);
+    text-align: center;
+  }
+  .code { font-family: Caveat, cursive; font-size: 30px; color: var(--accent); }
+  h1 { margin: 2px 0 10px; color: var(--strong); font-size: 34px; line-height: 1.15; letter-spacing: -.02em; }
+  p { margin: 0 auto; max-width: 400px; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+  .actions a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--tint-soft);
+    color: var(--strong);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .45s var(--spring), border-color .2s;
+  }
+  .actions a:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .actions a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* The owl, in the same crayon style as the site's doodle. */
+  .owl { display: block; width: 210px; height: auto; margin: 0 auto 10px; overflow: visible; cursor: pointer; }
+  .owl .ink { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+  .owl .thin { stroke-width: 3.5; }
+  .owl .orange { stroke: #ff6a13; }
+  .owl .blue { stroke: #4f7cff; }
+  .owl .faint { opacity: .45; }
+  .owl .dot { fill: var(--ink); }
+  .owl .q { font: 600 46px Caveat, cursive; fill: var(--accent); }
+  .owl .head, .owl .eyes, .owl .pupils, .owl .q { transform-box: fill-box; }
+  .owl .head { transform-origin: 50% 100%; animation: tilt 3.2s ease-in-out infinite alternate; }
+  .owl .eyes { transform-origin: center; animation: blink 4s infinite; }
+  .owl .pupils { animation: look 5s ease-in-out infinite; }
+  .owl .q { transform-origin: 50% 100%; animation: wobble 1.8s ease-in-out infinite alternate; }
+  .owl.hoot .head { animation: hop .5s 2; }
+  @keyframes tilt { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+  @keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+  @keyframes look { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 55% { transform: translateX(5px); } 80% { transform: translate(0, -3px); } }
+  @keyframes wobble { from { transform: rotate(-10deg) translateY(0); } to { transform: rotate(10deg) translateY(-6px); } }
+  @keyframes hop { 50% { transform: translateY(-14px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <svg class="owl" viewBox="140 120 160 240" role="img" aria-label="A confused crayon owl looking around">
+    <defs>
+      <filter id="crayon" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7">
+          <animate attributeName="seed" values="7;19;31;43" dur=".6s" calcMode="discrete" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="3.2"/>
+      </filter>
+    </defs>
+    <g filter="url(#crayon)">
+      <text class="q" x="262" y="190">?</text>
+      <g class="head">
+        <path class="ink" d="M210 212 C 255 212 270 260 265 300 C 262 330 240 340 210 340 C 180 340 158 330 155 300 C 150 260 165 212 210 212 Z"/>
+        <path class="ink" d="M180 224 L170 196 L196 214"/>
+        <path class="ink" d="M240 224 L250 196 L224 214"/>
+        <g class="eyes">
+          <circle class="ink" cx="190" cy="255" r="17"/>
+          <circle class="ink" cx="230" cy="255" r="17"/>
+          <g class="pupils">
+            <circle class="dot" cx="190" cy="257" r="6"/>
+            <circle class="dot" cx="230" cy="257" r="6"/>
+          </g>
+        </g>
+        <path class="ink orange" d="M203 273 L210 285 L217 273 Z"/>
+        <path class="ink thin" d="M160 282 C 176 292 179 312 170 326"/>
+        <path class="ink thin" d="M260 282 C 244 292 241 312 250 326"/>
+        <path class="ink thin faint" d="M194 302 q6 6 12 0 M214 302 q6 6 12 0 M204 316 q6 6 12 0"/>
+      </g>
+      <path class="ink thin orange" d="M194 340 l-6 6 M194 340 l0 7 M194 340 l6 6 M226 340 l-6 6 M226 340 l0 7 M226 340 l6 6"/>
+      <path class="ink blue" d="M150 352 C 190 350 240 351 272 349"/>
+    </g>
+  </svg>
+
+  <div class="code">404 · hoo-ps!</div>
+  <h1>This page flew away.</h1>
+  <p>Even the owl looked everywhere and couldn't find it. The link might be old, or there might be a typo.</p>
+  <div class="actions">
+    <a class="primary" data-home href="./">Take me home</a>
+    <a data-home="#work" href="./#work">See my work</a>
+  </div>
+</main>
+<script>
+  /* GitHub Pages serves this page for any missing address, so point the
+     buttons at the site's real home rather than the current folder. */
+  (function () {
+    var base = /\.github\.io$/.test(location.hostname) ? '/oshish.tech/' : '/';
+    document.querySelectorAll('[data-home]').forEach(function (a) {
+      a.href = base + (a.getAttribute('data-home') || '');
+    });
+    var owl = document.querySelector('.owl');
+    owl.addEventListener('click', function () {
+      owl.classList.remove('hoot'); void owl.getBoundingClientRect(); owl.classList.add('hoot');
+    });
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      owl.querySelectorAll('animate').forEach(function (a) { a.remove(); });
+    }
+  })();
+</script>
+</body>
+</html>
