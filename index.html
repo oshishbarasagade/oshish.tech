@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oshish</title>
-<meta name="description" content="Oshish builds apps and videos for better mornings, healthier bodies, and curious minds.">
+<meta name="description" content="Oshish is an independent builder and the maker of Quiplos, AI replies on X and LinkedIn in your own voice.">
 <meta name="theme-color" content="#201c17">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23ff6a13'/%3E%3C/svg%3E">
 <script>
@@ -858,6 +858,26 @@
   }
   .share-links a:hover, .share-links button:hover { color: var(--strong); border-color: var(--line-3); transform: translateY(-2px); }
 
+  /* ---------- Social links ---------- */
+  .social-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .social-pills a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--tint-soft);
+    color: var(--strong);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color .2s, transform .45s var(--spring);
+  }
+  .social-pills a:hover { border-color: var(--line-3); transform: translateY(-2px); }
+  .social-pills a.coffee { border-color: color-mix(in srgb, #ffdd00 45%, transparent); }
+  .social-pills .tool { font-weight: 500; }
+  .socials-text { display: contents; }
+
   /* ---------- Sound switch ---------- */
   .sound-toggle { display: inline-flex; align-items: center; gap: 6px; }
   .sound-toggle .wave { display: none; }
@@ -964,7 +984,7 @@
       <img class="banner" src="banner.webp" width="1200" height="497" alt="Oshish leaning on a railing by the sea under a cloudy sky">
       <figcaption class="glass">
         <i class="live" aria-hidden="true"></i>
-        <div><strong>Oshish</strong><span>Building Owlarm</span></div>
+        <div><strong>Oshish</strong><span>Building Quiplos</span></div>
       </figcaption>
     </figure>
 
@@ -973,16 +993,12 @@
       <div>
         <span class="namaste"><span lang="hi">नमस्ते</span></span>
         <h1>Oshish</h1>
-        <span class="role">Independent builder · Android apps and health Reels</span>
+        <span class="role">Independent builder · Maker of Quiplos</span>
       </div>
     </div>
 
-    <p class="bio">I build things that help people make more of their days, for better
-      <span class="yellow">mornings</span>, healthier <span class="pink">bodies</span>, and
-      <span class="blue">curious minds</span>. I shipped
-      <a class="chip" href="#project/quiplos"><i><img src="quiplos.png" alt="" width="18" height="18"></i>Quiplos</a>, a Chrome extension that writes replies on X and LinkedIn in your own voice. Right now I'm making
-      <a class="chip" href="#work"><i style="background:#ff6a13"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="5.5"/><path d="M8 6v3l2 1.5"/></svg></i>Owlarm</a>, an Android alarm that actually gets you out of bed, and
-      <a class="chip" href="#work"><i style="background:#ff86ae"><svg width="10" height="10" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><path d="M8 14.2 2.3 8.6a3.6 3.6 0 0 1 5.1-5.1l.6.6.6-.6a3.6 3.6 0 0 1 5.1 5.1z"/></svg></i>Body Science</a>, short animated Reels on how your body works.</p>
+    <p class="bio">I build software that helps people make more of their days. I shipped
+      <a class="chip" href="#project/quiplos"><i><img src="quiplos.png" alt="" width="18" height="18"></i>Quiplos</a>, a Chrome extension that writes replies on X and LinkedIn in your own voice, and I keep making it better.</p>
     <div class="cta">
       <a class="muted-link" href="https://www.instagram.com/oshish.ai/" target="_blank" rel="noopener">DM on Instagram<svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
       <a class="muted-link" href="mailto:hello@oshish.tech">Email me</a>
@@ -1002,16 +1018,6 @@
         <div class="exp-top"><b>Quiplos</b><span class="now shipped">LIVE</span><span class="exp-date">Present</span></div>
         <div class="exp-role">Founder &amp; Developer · Independent</div>
         <p>Designed, built and launched a Chrome extension for AI replies on X and LinkedIn, from the in-page reply flow to paid plans.</p>
-      </div>
-      <div class="exp r">
-        <div class="exp-top"><b>Owlarm</b><span class="now">NOW</span><span class="exp-date">Present</span></div>
-        <div class="exp-role">Founder &amp; Developer · Independent</div>
-        <p>Designing and building an Android alarm app, from wake-up missions to making sure it rings reliably on every phone.</p>
-      </div>
-      <div class="exp r">
-        <div class="exp-top"><b>Body Science</b><span class="now">NOW</span><span class="exp-date">Present</span></div>
-        <div class="exp-role">Creator · Instagram</div>
-        <p>Writing, voicing and animating 40-second Reels that explain how the body works, hosted by Ruby the mascot.</p>
       </div>
     </div>
 
@@ -1094,8 +1100,8 @@
     <span class="eyebrow">About</span>
     <h1>A little beyond the screen</h1>
     <p class="lede">I'm Oshish, an independent builder based in India.</p>
-    <p class="bio">I make software and stories that help people make more of their days. My own projects include Quiplos, a Chrome extension for replying on X and LinkedIn in your own voice; Owlarm, an Android alarm that gets you out of bed; and Body Science, animated Reels that explain how your body works.</p>
-    <p class="small">Currently building Owlarm.</p>
+    <p class="bio">I make software that helps people make more of their days. My main project is Quiplos, a Chrome extension for replying on X and LinkedIn in your own voice.</p>
+    <p class="small">Currently building Quiplos.</p>
 
     <h3 class="sub">Find me elsewhere</h3>
     <div class="cards">
@@ -1135,12 +1141,12 @@
     <p>A few ideas behind what I make.</p>
     <div class="beliefs">
       <div class="belief r"><b>Software should give time back.</b><span>The best tools get out of the way once they've done their job.</span></div>
-      <div class="belief r"><b>Small habits compound.</b><span>A better morning starts a better day. That's why Owlarm exists.</span></div>
-      <div class="belief r"><b>Explaining simply is a skill.</b><span>If a 40-second Reel can teach it, it's worth making clearer.</span></div>
+      <div class="belief r"><b>Small habits compound.</b><span>A few good replies a day add up. That's why Quiplos has streaks.</span></div>
+      <div class="belief r"><b>Your voice is the point.</b><span>AI should help you sound more like yourself, not like everyone else.</span></div>
     </div>
 
     <h3 class="sub">What I'm working on</h3>
-    <p>Right now I'm building Owlarm, an Android alarm that actually gets you out of bed.</p>
+    <p>Right now I'm improving Quiplos, AI replies on X and LinkedIn in your own voice.</p>
     <div class="links-row">
       <a href="#work">Explore my projects</a>
       <a href="#craft">My tools</a>
@@ -1259,6 +1265,7 @@
       </span>
       <a href="https://www.instagram.com/oshish.ai/" target="_blank" rel="noopener"><span class="u">DM on Instagram</span><svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
     </div>
+    <div class="social-pills r" data-socials="pills" aria-label="Find me on"></div>
   </section>
 </main>
 
@@ -1342,8 +1349,7 @@
   <div class="foot-line">
     <div class="foot-row">
       <div class="foot-links">
-        <a href="https://github.com/oshishbarasagade" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.instagram.com/oshish.ai/" target="_blank" rel="noopener">Instagram</a>
+        <span class="socials-text" data-socials="text"></span>
         <a href="mailto:hello@oshish.tech">Email</a>
         <button class="linkish sound-toggle" id="sound-toggle" type="button" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.5l3.5-3v10l-3.5-3H2.5z"/><path class="wave" d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.8a6 6 0 0 1 0 8.4"/><path class="mute" d="M11 6l4 4M15 6l-4 4"/></svg><span>Sound off</span></button>
       </div>
@@ -1435,26 +1441,6 @@ var PROJECTS = [
       { label: 'Website', url: 'http://quiplos.com/' },
       { label: 'Chrome Web Store', url: 'https://chromewebstore.google.com/detail/ilolphnoibonihbaagjppgckaijkdelp' }
     ]
-  },
-  {
-    name: 'Owlarm',
-    color: '#ff6a13',
-    icon: 'owlarm',
-    status: 'In development',
-    dot: '#ff6a13',
-    desc: 'An Android alarm clock that makes sure you actually get up: you switch it off by finishing a wake-up mission, not by tapping snooze.',
-    meta: 'Android · Kotlin',
-    links: [] // e.g. [{ label: 'Play Store', url: 'https://...' }]
-  },
-  {
-    name: 'Body Science',
-    color: '#ff86ae',
-    icon: 'body',
-    status: 'Instagram Reels',
-    dot: '#34c759',
-    desc: 'Short animated Reels that explain how your body works in about 40 seconds, hosted by Ruby the mascot.',
-    meta: 'Animated · 9:16',
-    links: []
   }
 ];
 
@@ -1510,10 +1496,7 @@ var JOURNEY = [
 
 /* ====================================================================== */
 
-var ICONS = {
-  owlarm: '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="5.5"/><path d="M8 6v3l2 1.5M1.5 3.5 4 1.5M14.5 3.5 12 1.5"/></svg>',
-  body: '<svg width="12" height="12" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><path d="M8 14.2 2.3 8.6a3.6 3.6 0 0 1 5.1-5.1l.6.6.6-.6a3.6 3.6 0 0 1 5.1 5.1z"/></svg>'
-};
+var ICONS = {}; // small icons for projects without an image (add your own)
 var ARROW = '<svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg>';
 
 function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -1590,7 +1573,7 @@ document.querySelectorAll('[data-posts]').forEach(function (box) {
   var items = box.dataset.posts === 'home' ? POSTS.slice(0, 3) : POSTS;
   if (!items.length) {
     box.innerHTML = '<div class="post r"><span class="meta">Draft</span><span class="title">First notes coming soon</span>' +
-      '<span class="blurb">Write-ups on building Owlarm and making Body Science will land here.</span></div>';
+      '<span class="blurb">Write-ups on building Quiplos will land here.</span></div>';
     return;
   }
   box.innerHTML = items.map(function (p) {
@@ -1812,6 +1795,44 @@ document.getElementById('copy-link').addEventListener('click', function () {
 
   document.getElementById('to-top').addEventListener('click', function () {
     scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+})();
+
+/* ======================================================================
+   Your social links. Paste a link into "url" and it appears in the
+   Contact section and the footer. Empty ones stay hidden.
+   ====================================================================== */
+var SOCIALS = [
+  { name: 'GitHub',          icon: 'github',       color: 'ink',    url: 'https://github.com/oshishbarasagade' },
+  { name: 'Instagram',       icon: 'instagram',    color: 'E4405F', url: 'https://www.instagram.com/oshish.ai/' },
+  { name: 'X',               icon: 'x',            color: 'ink',    url: '' },
+  { name: 'LinkedIn',        icon: 'linkedin',     color: '0A66C2', url: '' },
+  { name: 'Product Hunt',    icon: 'producthunt',  color: 'DA552F', url: '' },
+  { name: 'Peerlist',        icon: 'peerlist',     color: '00AA45', url: '' },
+  { name: 'Reddit',          icon: 'reddit',       color: 'FF4500', url: '' },
+  { name: 'Bluesky',         icon: 'bluesky',      color: '1185FE', url: '' },
+  { name: 'Buy Me a Coffee', icon: 'buymeacoffee', color: 'FFDD00', url: '' }
+];
+(function () {
+  /* LinkedIn isn't in the icon set, so its logo is drawn here. */
+  var LINKEDIN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z'/%3E%3C/svg%3E\")";
+  var live = SOCIALS.filter(function (x) { return x.url; });
+  function iconStyle(x) {
+    var icon = x.icon === 'linkedin' ? LINKEDIN : 'url(https://cdn.jsdelivr.net/npm/simple-icons@15.0.0/icons/' + x.icon + '.svg)';
+    var color = x.color === 'ink' ? 'var(--strong)' : '#' + x.color;
+    return '--icon:' + icon.replace(/"/g, '&quot;') + ';--c:' + color;
+  }
+  document.querySelectorAll('[data-socials]').forEach(function (box) {
+    if (box.dataset.socials === 'text') {
+      box.innerHTML = live.map(function (x) {
+        return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.name) + '</a>';
+      }).join('');
+    } else {
+      box.innerHTML = live.map(function (x) {
+        return '<a class="' + (x.icon === 'buymeacoffee' ? 'coffee' : '') + '" href="' + esc(x.url) + '" target="_blank" rel="noopener">' +
+          '<span class="tool" style="' + iconStyle(x) + '">' + esc(x.name) + '</span></a>';
+      }).join('');
+    }
   });
 })();
 
