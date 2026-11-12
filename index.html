@@ -642,6 +642,42 @@
   .shot:hover { transform: translateY(-3px); border-color: var(--line-3); }
   .shot img { display: block; width: 100%; height: auto; }
 
+  .shot.square { max-width: 440px; }
+  .pp-video {
+    position: relative;
+    margin-top: 26px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0d0b09;
+    cursor: pointer;
+  }
+  .pp-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .pp-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    background: rgba(20, 16, 12, .45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: opacity .3s, transform .45s var(--spring);
+  }
+  .pp-video:hover .pp-play { transform: scale(1.08); }
+  .pp-video.playing .pp-play { opacity: 0; }
+  .proj-cover { display: none; }
+  .projects.grid .proj-top { flex-wrap: wrap; row-gap: 4px; }
+  .projects.grid .proj-status { white-space: nowrap; }
+  .projects.grid .proj-links { order: 5; width: 100%; margin-left: 0; }
+  .projects.grid .proj-cover { display: block; width: calc(100% + 36px); max-width: none; height: auto; margin: -18px -18px 14px; aspect-ratio: 16 / 9; object-fit: cover; }
+
   /* Click-to-zoom screenshot viewer */
   .lightbox {
     position: fixed;
@@ -998,7 +1034,8 @@
     </div>
 
     <p class="bio">I build software that helps people make more of their days. I shipped
-      <a class="chip" href="#project/quiplos"><i><img src="quiplos.png" alt="" width="18" height="18"></i>Quiplos</a>, a Chrome extension that writes replies on X and LinkedIn in your own voice, and I keep making it better.</p>
+      <a class="chip" href="#project/quiplos"><i><img src="quiplos.png" alt="" width="18" height="18"></i>Quiplos</a>, a Chrome extension that writes replies on X and LinkedIn in your own voice, and I keep making it better. I also made
+      <a class="chip" href="#project/sling-smash-tycoon"><i><img src="work/sling-icon.webp" alt="" width="18" height="18"></i>Sling &amp; Smash Tycoon</a>, a physics slingshot game you can play in the browser.</p>
     <div class="cta">
       <a class="muted-link" href="https://www.instagram.com/oshish.ai/" target="_blank" rel="noopener">DM on Instagram<svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
       <a class="muted-link" href="mailto:hello@oshish.tech">Email me</a>
@@ -1018,6 +1055,11 @@
         <div class="exp-top"><b>Quiplos</b><span class="now shipped">LIVE</span><span class="exp-date">Present</span></div>
         <div class="exp-role">Founder &amp; Developer · Independent</div>
         <p>Designed, built and launched a Chrome extension for AI replies on X and LinkedIn, from the in-page reply flow to paid plans.</p>
+      </div>
+      <div class="exp r">
+        <div class="exp-top"><b>Sling &amp; Smash Tycoon</b><span class="now">PRE-RELEASE</span><span class="exp-date">Nov 2026</span></div>
+        <div class="exp-role">Game developer · CrazyGames</div>
+        <p>Built a physics destruction game in Phaser 3 and Matter.js: 100 levels, 10 worlds, skill balls, upgrades and a pet, with all art and sound generated in code.</p>
       </div>
     </div>
 
@@ -1441,6 +1483,80 @@ var PROJECTS = [
       { label: 'Website', url: 'http://quiplos.com/' },
       { label: 'Chrome Web Store', url: 'https://chromewebstore.google.com/detail/ilolphnoibonihbaagjppgckaijkdelp' }
     ]
+  },
+  {
+    name: 'Sling & Smash Tycoon',
+    slug: 'sling-smash-tycoon',
+    color: '#f2a71b',
+    img: 'work/sling-icon.webp',
+    cover: 'work/sling-cover.webp',
+    status: 'Pre-release · CrazyGames',
+    dot: '#34c759',
+    desc: 'A physics slingshot game for the browser. Knock down towers, castles and factories across 100 levels in 10 worlds, where every block can crack, splinter and shatter.',
+    meta: 'Browser game · Phaser 3 + Matter.js · Rated 9.4',
+    links: [
+      { label: 'Play on CrazyGames', url: 'https://www.crazygames.com/game/sling-smash-tycoon' }
+    ],
+    page: {
+      tagline: 'Slingshot physics, *real destruction*',
+      video: 'work/sling-preview.mp4',
+      intro: 'Sling & Smash Tycoon is a physics destruction game for the browser, built for CrazyGames. Drag back to aim, let go to fire, and bring whole structures down: find the weak points, set off TNT, and watch everything collapse.',
+      facts: [
+        ['Play on', 'Desktop and mobile browser'],
+        ['Built with', 'Phaser 3, Matter.js, TypeScript'],
+        ['Content', '100 levels in 10 worlds'],
+        ['Rating', '9.4 on CrazyGames']
+      ],
+      features: [
+        {
+          title: 'Every block *can break*',
+          text: 'Damage depends on speed, mass and how hard the material is. Wood splinters, glass shatters, stone crumbles, and whole sections fall when their support goes.',
+          points: [
+            'Wood, glass, brick, stone, steel, concrete and ice',
+            'Nails and bolts hold structures together and snap under strain',
+            'TNT explodes and sets off chain reactions'
+          ],
+          shot: 'work/sling-tnt.webp',
+          square: true
+        },
+        {
+          title: 'Skill balls *with a twist*',
+          text: 'Special projectiles change how a level plays out.',
+          points: [
+            'Fire spreads through timber',
+            'Frost makes blocks brittle so the next shot shatters them',
+            'Shock burns out bolts along steel',
+            'Cluster Bomb splits in mid-air with a tap'
+          ],
+          shot: 'work/sling-fire.webp',
+          square: true
+        },
+        {
+          title: '100 levels, *10 worlds*',
+          text: 'From the Countryside to a Military Base and a Final Destruction world, with a giant boss building at the end of each one.',
+          points: [
+            'Glowing weak points, steel walls, plated blocks and moving walls as you go',
+            'Objectives, bonus goals and up to 3 stars per level',
+            'Endless, Time Attack and a Daily Challenge'
+          ]
+        },
+        {
+          title: 'Progress *worth chasing*',
+          text: 'Coins, upgrades and a pet that grows with you.',
+          points: [
+            'Six slingshot upgrades and eight projectiles',
+            'Daily rewards, missions and 34 achievements',
+            'A style shop for bands, frames and ball finishes',
+            'Bolt the pet levels up and unlocks hats, outfits and skills'
+          ]
+        },
+        {
+          title: 'Built *from scratch*',
+          text: 'All of the art and sound are generated in code when the game starts, so there are no third-party image or audio files.',
+          tags: ['Phaser 3', 'Matter.js', 'TypeScript', 'Vite', 'Mouse and touch']
+        }
+      ]
+    }
   }
 ];
 
@@ -1508,6 +1624,7 @@ document.querySelectorAll('[data-projects]').forEach(function (list) {
       return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ARROW + '</a>';
     }).join('');
     return '<article class="proj r">' +
+      (p.cover ? '<img class="proj-cover" src="' + esc(p.cover) + '" alt="" width="1280" height="720" loading="lazy">' : '') +
       '<div class="proj-top">' +
         (p.img
           ? '<img class="proj-icon" src="' + esc(p.img) + '" alt="" width="22" height="22">'
@@ -1628,8 +1745,8 @@ function renderProject(slug) {
       '<p class="r">' + esc(f.text) + '</p>' +
       (f.points ? '<ul class="r">' + f.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '') +
       (f.tags ? '<div class="tags r">' + f.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
-      (f.shot ? '<button class="shot r" type="button" data-full="' + esc(f.shot) + '" data-cap="' + esc(plain) + '" aria-label="Enlarge screenshot: ' + esc(plain) + '">' +
-        '<img src="' + esc(f.shot) + '" alt="' + esc(p.name + ' screenshot: ' + plain) + '" width="1280" height="800" loading="lazy"></button>' : '') +
+      (f.shot ? '<button class="shot r' + (f.square ? ' square' : '') + '" type="button" data-full="' + esc(f.shot) + '" data-cap="' + esc(plain) + '" aria-label="Enlarge screenshot: ' + esc(plain) + '">' +
+        '<img src="' + esc(f.shot) + '" alt="' + esc(p.name + ' screenshot: ' + plain) + '" width="' + (f.square ? 1080 : 1280) + '" height="' + (f.square ? 1080 : 800) + '" loading="lazy"></button>' : '') +
     '</section>';
   }).join('');
   var body = document.getElementById('project-body');
@@ -1640,11 +1757,26 @@ function renderProject(slug) {
       '<div><h1>' + esc(p.name) + '</h1><div class="pp-status"><span class="proj-status" style="--dot:' + p.dot + '">' + esc(p.status) + '</span></div></div>' +
     '</div>' +
     (d.tagline ? '<p class="pp-tagline r">' + accentText(d.tagline) + '</p>' : '') +
+    (d.video ? '<div class="pp-video r"><video src="' + esc(d.video) + '"' + (p.cover ? ' poster="' + esc(p.cover) + '"' : '') +
+      ' muted loop playsinline preload="metadata" aria-label="' + esc(p.name) + ' gameplay preview"></video>' +
+      '<button class="pp-play" type="button" aria-label="Play preview">▶</button></div>' : '') +
     (d.intro ? '<p class="pp-intro r">' + esc(d.intro) + '</p>' : '') +
     (links ? '<div class="pp-actions r">' + links + '</div>' : '') +
     (facts ? '<div class="facts r">' + facts + '</div>' : '') +
     features;
   document.title = p.name + ' · Oshish';
+  var box = body.querySelector('.pp-video');
+  if (box) {
+    var video = box.querySelector('video'), btn = box.querySelector('.pp-play');
+    var sync = function () { box.classList.toggle('playing', !video.paused); };
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    box.addEventListener('click', function () { if (video.paused) video.play(); else video.pause(); });
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var tryPlay = video.play();
+      if (tryPlay && tryPlay.catch) tryPlay.catch(function () {});
+    }
+  }
   return true;
 }
 
@@ -2261,12 +2393,13 @@ var sfx = (function () {
   /* One tick per step; the secret level runs faster. */
   var speed = 115, secret = false, hue = 0;
   (function tick() {
-    if (running && visible()) {
+    /* Schedule the next step first, so one bad frame can't stop the snake for good. */
+    setTimeout(tick, speed);
+    if (running && visible() && grid.length) {
       if (mode === 'play') playStep(); else autoStep();
       if (secret) hue = (hue + 12) % 360;
       draw();
     }
-    setTimeout(tick, speed);
   })();
 
   /* Konami code: jump to the graph and start a fast rainbow round. */
