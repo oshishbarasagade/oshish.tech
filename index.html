@@ -917,6 +917,34 @@
   }
   .doodle .owl-eyes { transform-box: fill-box; transform-origin: center; }
   .doodle.hoot .owl-eyes { animation: owlBlink .5s 3; }
+
+  /* Idle life once the doodle has drawn itself in. */
+  .doodle .owl-head, .doodle .bob, .doodle .blink, .doodle .steam { transform-box: fill-box; }
+  .doodle .owl-head { transform-origin: 50% 100%; }
+  .doodle .bob { transform-origin: 50% 100%; }
+  .doodle .blink { transform-origin: center; }
+  .doodle.drawn .owl-head { animation: owlSway 2.4s ease-in-out 2s infinite alternate; }
+  .doodle.drawn:not(.hoot) .owl-eyes { animation: idleBlink 4.2s 2.2s infinite; }
+  .doodle.drawn .bob { animation: typeNod 1.6s ease-in-out 2s infinite alternate; }
+  .doodle.drawn .bob .blink { animation: idleBlink 5.3s 3.4s infinite; }
+  .doodle.drawn .glow { animation: screenGlow 3s ease-in-out 2s infinite alternate; }
+  .doodle .steam { transform-origin: 50% 100%; }
+  .doodle.drawn .steam { animation: steamRise 2.8s ease-in-out 2s infinite; }
+  .doodle.drawn .steam:nth-child(2) { animation-delay: 2.9s; }
+  .doodle.drawn .steam:nth-child(3) { animation-delay: 3.8s; }
+  .doodle .glint { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; opacity: 0; }
+  .doodle.drawn .glint { animation: glint 6.5s ease-in-out 3s infinite; }
+  @keyframes owlSway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+  @keyframes idleBlink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+  @keyframes typeNod { from { transform: translateY(0) rotate(0); } to { transform: translateY(3px) rotate(1.2deg); } }
+  @keyframes screenGlow { from { opacity: .55; } to { opacity: 1; } }
+  @keyframes steamRise {
+    0% { transform: translateY(6px) scaleX(1); opacity: 0; }
+    30% { opacity: 1; }
+    60% { transform: translateY(-6px) scaleX(-1); opacity: .8; }
+    100% { transform: translateY(-16px) scaleX(1); opacity: 0; }
+  }
+  @keyframes glint { 0%, 78%, 100% { opacity: 0; } 84% { opacity: .9; } 90% { opacity: 0; } }
   @keyframes owlBlink { 50% { transform: scaleY(.1); } }
 
   /* ---------- Crayon pencil cursor over the doodle ---------- */
@@ -1195,7 +1223,9 @@
     <defs>
       <!-- Roughens every line so it looks drawn with a crayon. -->
       <filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
-        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/>
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7">
+          <animate class="boil" attributeName="seed" values="7;19;31;43" dur=".6s" calcMode="discrete" repeatCount="indefinite"/>
+        </feTurbulence>
         <feDisplacementMap in="SourceGraphic" scale="3.2"/>
       </filter>
     </defs>
@@ -1232,6 +1262,7 @@
         <rect class="ink orange" pathLength="1" x="467" y="107" width="27" height="21" rx="5"/>
         <rect class="ink orange" pathLength="1" x="506" y="107" width="27" height="21" rx="5"/>
         <path class="ink orange thin" pathLength="1" d="M494 115 L506 115 M467 113 L457 111 M533 113 L543 111"/>
+        <path class="glint" d="M472 113 l7 -4 M511 113 l7 -4"/>
         <g class="blink">
           <circle class="dot" cx="481" cy="118" r="3.5"/>
           <circle class="dot" cx="519" cy="118" r="3.5"/>
@@ -1756,6 +1787,7 @@ document.getElementById('copy-link').addEventListener('click', function () {
 /* Footer doodle, scroll fade, and back to top. */
 (function () {
   var doodle = document.querySelector('.doodle');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) doodle.querySelectorAll('animate').forEach(function (a) { a.remove(); });
   doodle.querySelectorAll('.ink').forEach(function (el, i) { el.style.setProperty('--i', i); });
   if (!('IntersectionObserver' in window)) doodle.classList.add('drawn');
   else new IntersectionObserver(function (entries, obs) {
